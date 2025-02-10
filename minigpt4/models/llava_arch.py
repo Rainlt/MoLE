@@ -180,7 +180,7 @@ class LlavaMetaModel:
 
         if hasattr(config, "mm_vision_tower"):
             self.vision_tower = build_vision_tower(config, delay_load=True)
-            self.mm_projector = build_vision_projector(config)
+            self.mm_projector = build_vision_projector(config)#线性映射
 
     def get_vision_tower(self):
         vision_tower = getattr(self, 'vision_tower', None)
@@ -237,7 +237,7 @@ class LlavaMetaForCausalLM(ABC):
         return self.get_model().get_vision_tower()
 
     def encode_images(self, images):
-        image_features = self.get_model().get_vision_tower()(images)
+        image_features = self.get_model().get_vision_tower()(images)#clip
         image_features = self.get_model().mm_projector(image_features)
         return image_features
 

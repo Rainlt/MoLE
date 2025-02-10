@@ -1,4 +1,4 @@
-name: halc
+name: mole
 channels:
   - pytorch
   - defaults

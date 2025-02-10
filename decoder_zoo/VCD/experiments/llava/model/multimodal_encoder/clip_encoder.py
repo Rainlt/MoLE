@@ -37,7 +37,7 @@ class CLIPVisionTower(nn.Module):
         return image_features
 
     @torch.no_grad()
-    def forward(self, images):
+    def forward(self, images):#注意，这里自定义了一个clip,forward只需要image，相当于原版的clip的encode_image
         if type(images) is list:
             image_features = []
             for image in images:

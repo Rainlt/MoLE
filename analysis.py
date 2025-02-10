@@ -36,8 +36,8 @@ def save_attn_hallu_fig(attn_data):
     ax1.set_xticks(np.arange(0, 96, 16)) 
     
     # 设置左侧y轴的标签和颜色
-    ax1.set_ylabel('Attention for Prompt', color=edge_color, fontsize=14)
-    ax1.set_xlabel('Position Index', fontsize=14)
+    ax1.set_ylabel('Attention for Prompt', color=edge_color, fontsize=18)
+    ax1.set_xlabel('Position Index', fontsize=18)
     ax1.set_ylim(0.68, 1.0)
 
     # 绘制曲线
@@ -54,7 +54,7 @@ def save_attn_hallu_fig(attn_data):
     ax1.tick_params(axis='y', labelsize=12)  # 设置左侧y轴刻度标签的字体大小
     ax2 = ax1.twinx()
     ax2.tick_params(axis='y', labelsize=12)  # 设置右侧y轴刻度标签的字体大小
-    ax2.set_ylabel('Number of Hallucinations', color=edge_color, fontsize=14)
+    ax2.set_ylabel('Number of Hallucinations', color=edge_color, fontsize=18)
     ax2.set_ylim(0, 150)
 
     # 计算条形图的中心位置
@@ -170,11 +170,11 @@ def analysis_logits():
     for index, data in tqdm(enumerate(data_list)):
         # analysis data sample
         #img_id = data["image_id"]
-        output_tokens = data["output_tokens"]  # [n]
-        jsd_matrix = data["jsd_matrix"]  # [32, seq_len]
+        #output_tokens = data["output_tokens"]  # [n]
+        #jsd_matrix = data["jsd_matrix"]  # [32, seq_len]
         
-        jsd_matrix_topN = data["jsd_matrix_topN"]  # [32, seq_len]
-        jsd_matrix_remain = data["jsd_matrix_remain"]  # [32, seq_len]
+        #jsd_matrix_topN = data["jsd_matrix_topN"]  # [32, seq_len]
+        #jsd_matrix_remain = data["jsd_matrix_remain"]  # [32, seq_len]
         attn_matrix = data["attn_matrix"]  # [32, seq_len]
         # 将attn_matrix中的所有值保留四位小数
         attn_matrix = np.array([[round(i, 4) for i in j] for j in attn_matrix])#np.array(attn_matrix).shape=(32,64)
