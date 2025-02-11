@@ -33,7 +33,7 @@ from minigpt4.tasks import *
 from types import SimpleNamespace
 #from decoder_zoo.Woodpecker.vis_corrector import Corrector
 #from decoder_zoo.Woodpecker.config import woodpecker_args_dict
-from decoder_zoo.HALC.context_density.halc import halc_assistant
+#from decoder_zoo.HALC.context_density.halc import halc_assistant
 from decoder_zoo.VCD.vcd_utils.vcd_add_noise import add_diffusion_noise
 
 from pycocotools.coco import COCO
@@ -322,7 +322,7 @@ class MplugTransform:
         return image_tensor
 def main():
     args = parse_args()
-    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
+    #os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
 
     args.cfg_path = MODEL_EVAL_CONFIG_PATH[args.model]
     args.pope_path = POPE_PATH[args.pope_type]

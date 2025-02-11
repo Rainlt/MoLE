@@ -228,7 +228,7 @@ class LLaVa(BaseModel):
 
 
             #output_ids, info_dict = self.llama_model.generate(
-            output_ids,_ = self.llama_model.generate(
+            output_ids = self.llama_model.generate(
                 input_ids=input_ids,
                 use_cache=True,
                 do_sample=use_nucleus_sampling,

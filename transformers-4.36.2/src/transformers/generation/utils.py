@@ -7936,15 +7936,12 @@ class GenerationMixin:
                 else:
                     expert_layer = 0
                     expert_weight = 0
-                
-                expert_layer = 32-final_layers+topN_layer
-                expert_weight = 1
                 # print("js_divs ", js_divs*10000)
                 
                 JSD_matrix.append(js_divs*10000)
                 JSD_matrix_topN.append(js_divs_topN.squeeze(-1)*10000)
                 JSD_matrix_remain.append(js_divs_remaining.squeeze(-1)*10000)
-
+                #现在这个premature_layer好像没什么用了
                 premature_layer = candidate_premature_layers[int(js_divs.argmax().cpu().item())]#找到js距离最大啊的那个premature layer去相减
                 
                 # premature_layer_list.append(premature_layer)
@@ -7962,7 +7959,6 @@ class GenerationMixin:
                 base_logits_attn = dict_outputs[max_attn_index][:, -1, :]
                 attn_layer_weights = 1 - torch.exp(-t/tmp)
                 final_logits = dict_outputs[mature_layer][:, -1, :]
-                
                 
                 if(w_exp==0 and tmp==1000):#beam
                     logits = final_logits
@@ -8081,7 +8077,7 @@ class GenerationMixin:
                     cross_attentions=cross_attentions,
                     decoder_hidden_states=decoder_hidden_states,
                 ),
-                info_dict,
+                #info_dict,
                 )
             else:
                 return (BeamSearchDecoderOnlyOutput(
@@ -8092,10 +8088,10 @@ class GenerationMixin:
                     attentions=decoder_attentions,
                     hidden_states=decoder_hidden_states,
                 )
-                ,info_dict,
+                #,info_dict,
                 )
         else:
-            return sequence_outputs["sequences"], info_dict
+            return sequence_outputs["sequences"]#, info_dict
 
 
 
